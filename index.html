@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+    <body>
+        <p>Click here to update the chart.</p>
+        <div>
+
+        </div>
+        <script type="text/javascript">
+            // Your beautiful D3 code will go here
+            var dataset = [ 5, 10, 15, 20, 25 ];
+
+            d3.select("div").selectAll('p')
+                .data(dataset)
+                .enter()
+                .append("p")
+                .text(function(d){return d}).style(
+                    "color", function(d){
+                        if(d < 15){
+                            return "red";
+                        } else {
+                            return "green";
+                        }}
+                    );
+
+            d3.select("p").on("click", function(){
+                // Data set
+                var dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25, 5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
+
+                // Create vertical rectangle
+                svg.selectAll("rect")
+                    .data(dataset)
+                    .attr("y", function(d) {
+                        return h - yScale(d);
+                    })
+                    .attr("height", function(d) {
+                        return yScale(d);
+                    });
+            })
+        </script>
+    </body>
+</html>
